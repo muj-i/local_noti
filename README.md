@@ -1,4 +1,4 @@
-# flutter_application_1
+# aw_noti
 
 A new Flutter project.
 
