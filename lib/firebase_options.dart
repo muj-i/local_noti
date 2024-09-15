@@ -65,4 +65,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'local-noti-95efb.appspot.com',
     iosBundleId: 'com.example.awNoti',
   );
+
 }

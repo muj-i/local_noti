@@ -1,5 +1,3 @@
-import 'package:aw_noti/services/awesome_noti.dart';
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
@@ -38,7 +36,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   void initState() {
-    AwesomeNotificationController.setListeners();
+    // AwesomeNotificationController.setListeners();
     super.initState();
   }
 
@@ -56,29 +54,32 @@ class _HomeState extends State<Home> {
         children: [
           ElevatedButton(
             onPressed: () {
-              AwesomeNotificationController.requestUserPermissions(
-                context,
-                channelKey: 'hell',
-                permissionList: [
-                  NotificationPermission.Alert,
-                ],
-              );
+              // AwesomeNotificationController.requestUserPermissions(
+              //   context,
+              //   channelKey: 'hell',
+              //   permissionList: [
+              //     NotificationPermission.Alert,
+              //     NotificationPermission.Badge,
+              //     NotificationPermission.Sound,
+              //     NotificationPermission.Vibration,
+              //   ],
+              // );
             },
             child: const Text('Seak Permission'),
           ),
           const SizedBox(height: 8),
           FloatingActionButton(
             onPressed: () {
-              Future.delayed(const Duration(seconds: 10)).then((value) {
-                AwesomeNotifications().createNotification(
-                  content: NotificationContent(
-                    id: 10,
-                    channelKey: 'hell',
-                    title: 'Hello, World!',
-                    body: 'This is a notification from The App',
-                  ),
-                );
-              });
+              // Future.delayed(const Duration(seconds: 10)).then((value) {
+              //   AwesomeNotifications().createNotification(
+              //     content: NotificationContent(
+              //       id: 10,
+              //       channelKey: 'hell',
+              //       title: 'Hello, World!',
+              //       body: 'This is a notification from The App',
+              //     ),
+              //   );
+              // });
             },
             child: const Icon(Icons.notifications),
           ),
