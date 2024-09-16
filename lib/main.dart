@@ -3,6 +3,7 @@ import 'package:aw_noti/services/fcm_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:local_notification/local_notification.dart';
 
 import './the_app.dart';
 
@@ -65,7 +66,8 @@ void main() async {
 //     AwesomeNotifications().requestPermissionToSendNotifications();
 //   }
 // //!Awesome Notification
-
   await FcmService.init();
+  await LocalNotification.init();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(const TheApp());
 }

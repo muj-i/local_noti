@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:local_notification/local_notification.dart';
 
 class TheApp extends StatelessWidget {
   const TheApp({super.key});
@@ -64,6 +65,7 @@ class _HomeState extends State<Home> {
               //     NotificationPermission.Vibration,
               //   ],
               // );
+              LocalNotification.init();
             },
             child: const Text('Seak Permission'),
           ),
@@ -80,6 +82,10 @@ class _HomeState extends State<Home> {
               //     ),
               //   );
               // });
+              LocalNotification.showLocalNotification(
+                'Hello, World!',
+                'This is a notification from The App',
+              );
             },
             child: const Icon(Icons.notifications),
           ),
