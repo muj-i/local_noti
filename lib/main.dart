@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:aw_noti/firebase_options.dart';
 import 'package:aw_noti/services/fcm_service.dart';
+// import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,21 +21,24 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print('Messagebody${message.notification?.body}');
   print('Messageid has${message.messageId?.hashCode}');
   print('Messageid ${message.messageId}');
+  final id = Random().nextInt(2147483647);
+  LocalNotification.showLocalNotification(
+    message.messageId.hashCode,
+    'loc${message.notification?.title}' ?? '',
+    message.notification?.body ?? '',
+  ).then((_) {
+    Future.delayed(const Duration(seconds: 6))
+        .then((value) => LocalNotification.cancelNotification(id));
+  });
 
-  // final id = Random().nextInt(2147483647);
-  // AwesomeNotifications()
-  //     .createNotification(
+  // AwesomeNotifications().createNotification(
   //   content: NotificationContent(
   //     id: id,
   //     channelKey: "hell",
-  //     title: message.notification?.title ?? '',
+  //     title: 'aws${message.notification?.title}'  '',
   //     body: message.notification?.body ?? '',
   //   ),
-  // )
-  //     .then((value) {
-  //   Future.delayed(const Duration(seconds: 6))
-  //       .then((value) => AwesomeNotifications().cancel(id));
-  // });
+  // );
 
   print(
       'Message !also contained a notification: ${message.notification?.title}');
@@ -67,7 +73,7 @@ void main() async {
 //   }
 // //!Awesome Notification
   await FcmService.init();
-  await LocalNotification.init();
+  // await LocalNotification.init('The App');
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(const TheApp());
 }

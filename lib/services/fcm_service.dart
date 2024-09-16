@@ -1,12 +1,11 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:local_notification/local_notification.dart';
 
 abstract class FcmService {
   static init() {
-
     subscribeToNotificationByUserId('123xxx');
     firebaseForegroundHandler();
   }
-
 
   static void firebaseForegroundHandler() {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
@@ -24,6 +23,12 @@ abstract class FcmService {
       //       title: message.notification!.title!,
       //       body: message.notification!.body!),
       // );
+
+      LocalNotification.showLocalNotification(
+        message.messageId.hashCode,
+        message.notification?.title ?? '',
+        message.notification?.body ?? '',
+      );
       print(
           'Message !also contained a notification: ${message.notification?.title}');
     });

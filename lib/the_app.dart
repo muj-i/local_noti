@@ -65,7 +65,7 @@ class _HomeState extends State<Home> {
               //     NotificationPermission.Vibration,
               //   ],
               // );
-              LocalNotification.init();
+              LocalNotification.init('The App');
             },
             child: const Text('Seak Permission'),
           ),
@@ -83,6 +83,7 @@ class _HomeState extends State<Home> {
               //   );
               // });
               LocalNotification.showLocalNotification(
+                10,
                 'Hello, World!',
                 'This is a notification from The App',
               );
